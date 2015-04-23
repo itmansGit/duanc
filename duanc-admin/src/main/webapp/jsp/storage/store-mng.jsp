@@ -32,21 +32,21 @@
 							<!-- PAGE CONTENT BEGINS -->
 							<form:form action="${ctx }/authc/get-stores?menuId=${menuId }&subMenuId=${subMenuId }" method="post" 
 									commandName="storageDTO" id="query-form">
-								<form:select path="brandId" cssClass="input-medium">
+								<form:select path="phone.brandId" id="brandId" cssClass="input-medium">
 									<form:option value="" label="请选择"/>
 									<form:options items="${brands }"/>
 								</form:select>
-								<form:select path="modelId" cssClass="input-medium">
+								<form:select path="phone.modelId" id="modelId" cssClass="input-medium">
 									<form:option value="" label="请选择"/>
-									<c:if test="${storageDTO.brandId != null}">
-										<spring:eval expression="@brandAndModelService.getModelMapByBrand('${storageDTO.brandId }')" var="models"/>
+									<c:if test="${storageDTO.phone.brandId != null}">
+										<spring:eval expression="@brandAndModelService.getModelMapByBrand('${storageDTO.phone.brandId }')" var="models"/>
 										<form:options items="${models }"/>
 									</c:if>
 								</form:select>
 								<form:select path="phoneId" cssClass="input-medium">
 									<form:option value="" label="请选择"/>
-									<c:if test="${storageDTO.modelId != null}">
-										<spring:eval expression="@phoneService.getPhonesMap('${storageDTO.modelId }')" var="phones"/>
+									<c:if test="${storageDTO.phone.modelId != null}">
+										<spring:eval expression="@phoneService.getPhonesMap('${storageDTO.phone.modelId }')" var="phones"/>
 										<form:options items="${phones }"/>
 									</c:if>
 								</form:select>

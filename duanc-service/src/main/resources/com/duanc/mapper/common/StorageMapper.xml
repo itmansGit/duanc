@@ -11,10 +11,6 @@
 		<result column="price" property="price"/>
 		<result column="status" property="status"/>
 		<result column="created_time" property="createdTime"/>
-		<!-- <result column="version" property="phoneName"/>
-		<result column="brand_name" property="brandName"/>
-		<result column="model_name" property="modelName"/>
-		<result column="pic_url" property="phoneUrl"/> -->
 		<association property="createUser" javaType="com.duanc.model.User">
 			<result column="uid" property="id"/>
 			<result column="nickname" property="nickname"/>
@@ -51,7 +47,7 @@
 			<if test="price != null">#{price},</if>
 			<if test="status != null">#{status},</if>
 			<if test="createdTime != null">#{createdTime},</if>
-			<if test="createUser != null and createUser.id != null">#{createdUser},</if>
+			<if test="createUser != null and createUser.id != null">#{createUser.id},</if>
 		</trim>
 	</sql>
 	

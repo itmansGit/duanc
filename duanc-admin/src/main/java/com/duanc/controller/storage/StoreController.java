@@ -26,7 +26,8 @@ public class StoreController extends BaseController{
 	
 	@RequestMapping(value = "/store-in")
 	public String storeIn(StorageDTO storageDTO, Model model, HttpServletRequest request) {
-		if(null != storageDTO.getBrandId() && null != storageDTO.getModelId() && null != storageDTO.getPhoneId()) {
+		if(null != storageDTO.getPhone() && null != storageDTO.getPhone().getBrandId() && 
+				null != storageDTO.getPhone().getModelId() && null != storageDTO.getPhoneId()) {
 			User user = (User)request.getSession().getAttribute("user");
 			storageDTO.setCreatedTime(new Date());
 			storageDTO.setCreateUser(user);

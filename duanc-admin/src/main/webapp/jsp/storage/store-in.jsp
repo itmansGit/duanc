@@ -44,7 +44,7 @@
 														<div class="form-group">
 															<label class="col-sm-4 control-label no-padding-right">*品牌</label>
 															<div class="col-sm-6">
-																<form:select path="brandId" class="input-large">
+																<form:select path="phone.brandId" id="brandId" class="input-large">
 																	<form:option value="">请选择</form:option>
 																	<form:options items="${brands }"/>
 																</form:select>
@@ -54,10 +54,10 @@
 														<div class="form-group">
 															<label class="col-sm-4 control-label no-padding-right">*机型</label>
 															<div class="col-sm-6">
-																<form:select path="modelId" cssClass="input-large">
+																<form:select path="phone.modelId" id="modelId" cssClass="input-large">
 																	<form:option value="" label="请选择"/>
-																	<c:if test="${storageDTO.brandId != null}">
-																		<spring:eval expression="@brandAndModelService.getModelMapByBrand('${storageDTO.brandId }')" var="models"/>
+																	<c:if test="${storageDTO.phone.brandId != null}">
+																		<spring:eval expression="@brandAndModelService.getModelMapByBrand('${storageDTO.phone.brandId }')" var="models"/>
 																		<form:options items="${models }"/>
 																	</c:if>
 																</form:select>
@@ -69,8 +69,8 @@
 															<div class="col-sm-6">
 																<form:select path="phoneId" cssClass="input-large">
 																	<form:option value="" label="请选择"/>
-																	<c:if test="${storageDTO.modelId != null}">
-																		<spring:eval expression="@phoneService.getPhonesMap('${storageDTO.modelId }')" var="phones"/>
+																	<c:if test="${storageDTO.phone.modelId != null}">
+																		<spring:eval expression="@phoneService.getPhonesMap('${storageDTO.phone.modelId }')" var="phones"/>
 																		<form:options items="${phones }"/>
 																	</c:if>
 																</form:select>
