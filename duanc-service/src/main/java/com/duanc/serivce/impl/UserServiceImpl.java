@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.duanc.api.UserService;
-import com.duanc.mapper.UserMapper;
+import com.duanc.mapper.SysUserMapper;
 import com.duanc.model.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private UserMapper userMapper;
+	private SysUserMapper userMapper;
 	
 	@Override
 	public User findUser(User user) {

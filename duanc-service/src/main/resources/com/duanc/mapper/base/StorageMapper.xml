@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.duanc.mapper.base.StorageMapper" >
-  <resultMap id="BaseResultMap" type="com.duanc.model.base.Storage" >
+  <resultMap id="BaseResultMap" type="com.duanc.model.base.BaseStorage" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="storage_id" property="storageId" jdbcType="VARCHAR" />
     <result column="phone_id" property="phoneId" jdbcType="INTEGER" />
@@ -76,7 +76,7 @@
     id, storage_id, phone_id, count, price, status, created_time, created_user, modify_time, 
     modify_user, del_flag
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.StorageExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.BaseStorageExample" >
     select
     <if test="distinct" >
       distinct
@@ -104,13 +104,13 @@
     delete from storage
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.duanc.model.base.StorageExample" >
+  <delete id="deleteByExample" parameterType="com.duanc.model.base.BaseStorageExample" >
     delete from storage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.duanc.model.base.Storage" >
+  <insert id="insert" parameterType="com.duanc.model.base.BaseStorage" >
     insert into storage (id, storage_id, phone_id, 
       count, price, status, 
       created_time, created_user, modify_time, 
@@ -120,7 +120,7 @@
       #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.duanc.model.base.Storage" >
+  <insert id="insertSelective" parameterType="com.duanc.model.base.BaseStorage" >
     insert into storage
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -193,7 +193,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.StorageExample" >
+  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.BaseStorageExample" >
     select count(*) from storage
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -257,7 +257,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.Storage" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.BaseStorage" >
     update storage
     <set >
       <if test="storageId != null" >
@@ -293,7 +293,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.Storage" >
+  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.BaseStorage" >
     update storage
     set storage_id = #{storageId,jdbcType=VARCHAR},
       phone_id = #{phoneId,jdbcType=INTEGER},

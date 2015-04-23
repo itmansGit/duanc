@@ -2,7 +2,7 @@ package com.duanc.model;
 
 import java.util.Set;
 
-public class User extends BaseUser{
+public class User extends MyBaseUser{
 	
 	private static final long serialVersionUID = -5556460615688866192L;
 	/**

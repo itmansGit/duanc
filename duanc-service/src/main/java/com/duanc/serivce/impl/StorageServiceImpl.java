@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.duanc.api.StorageService;
 import com.duanc.common.MatchingMap;
 import com.duanc.constants.Constants;
-import com.duanc.mapper.common.StorageMapper;
+import com.duanc.mapper.common.StorageCommonMapper;
 import com.duanc.model.dto.StorageDTO;
 import com.duanc.utils.IDAutogenerationUtil;
 import com.duanc.utils.Pagination;
@@ -19,7 +19,7 @@ import com.duanc.utils.Pagination;
 public class StorageServiceImpl implements StorageService {
 	
 	@Autowired
-	private StorageMapper storageMapper;
+	private StorageCommonMapper storageMapper;
 	
 	@Override
 	public boolean storeIn(StorageDTO storageDTO) {

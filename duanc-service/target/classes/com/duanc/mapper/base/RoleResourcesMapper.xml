@@ -66,7 +66,7 @@
   <sql id="Base_Column_List" >
     role_id, resources_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.RoleResourcesExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.BaseRoleResourcesExample" >
     select
     <if test="distinct" >
       distinct
@@ -89,7 +89,7 @@
     where role_id = #{roleId,jdbcType=INTEGER}
       and resources_id = #{resourcesId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.duanc.model.base.RoleResourcesExample" >
+  <delete id="deleteByExample" parameterType="com.duanc.model.base.BaseRoleResourcesExample" >
     delete from role_resources
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -118,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.RoleResourcesExample" >
+  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.BaseRoleResourcesExample" >
     select count(*) from role_resources
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />

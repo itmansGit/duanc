@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class BasePhone implements Serializable {
-    private Integer id;
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private Integer brandId;
 

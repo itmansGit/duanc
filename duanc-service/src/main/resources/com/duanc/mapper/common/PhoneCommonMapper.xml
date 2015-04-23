@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanc.mapper.common.PhoneCommonMapper">
+	<resultMap type="com.duanc.model.dto.PhoneDTO" id="phoneMap">
+		<result column="id" property="id"/>
+		<result column="brand_id" property="brandId"/>
+		<result column="brand_name" property="brandName"/>
+		<result column="model_id" property="modelId"/>
+		<result column="model_name" property="modelName"/>
+		<result column="version" property="version"/>
+		<result column="price" property="price"/>
+		<result column="cpu" property="cpu"/>
+		<result column="cpu_cores" property="cpuCores"/>
+		<result column="cpu_hz" property="cpuHz"/>
+		<result column="listing_date" property="listingDate"/>
+		<result column="screen_size" property="screenSize"/>
+		<result column="net_type" property="netType"/>
+		<result column="os" property="os"/>
+		<result column="ram" property="ram"/>
+		<result column="rom" property="rom"/>
+		<result column="battery_capacity" property="batteryCapacity"/>
+		<result column="pic_url" property="picUrl"/>
+	</resultMap>
+	
+	<select id="getPhoneList" resultMap="phoneMap">
+		select <include refid="Phone_column"/> from phone p, brand b, model m 
+		<include refid="getPhoneList_where_clause"/> order by id desc
+		<if test="pagination !=null and pagination.begin >=0">
+			limit #{pagination.begin}, #{pagination.length}
+		</if>
+	</select>
+	
+	<select id="getPhoneListTotal" resultType="java.lang.Integer">
+		select count(*) from(select <include refid="Phone_column"/> from phone p, brand b, model m 
+		<include refid="getPhoneList_where_clause"/>)total
+	</select>
+	
+	<sql id="Phone_column">
+		p.id, p.brand_id, b.brand_name, p.model_id, m.model_name, p.version, p.price, p.cpu, 
+		p.cpu_cores, p.cpu_hz, p.listing_date, p.screen_size, p.net_type, p.os, p.ram, p.rom, 
+		p.battery_capacity, p.pic_url
+	</sql>
+	
+	<sql id="getPhoneList_where_clause">
+		<where>
+			p.brand_id = b.id and p.model_id = m.id
+			<include refid="phone_where_clause"/>
+		</where>
+	</sql>
+	
+	<sql id="phone_where_clause">
+		<if test="id != null">
+			and p.id = #{id }
+		</if>
+		<if test="brandId != null">
+			and p.brand_id = #{brandId }
+		</if>
+		<if test="modelId != null">
+			and p.model_id = #{modelId }
+		</if>
+	</sql>
+	
+	<delete id="delPhone">
+		<if test="id != null"> delete from phone  where id = #{id }</if>
+	</delete>
+	
+	<!-- *******************************查询是否存在******************************* -->
+	
+	<select id="queryPhoneIsExists" resultType="java.lang.Integer">
+		select count(*) from phone p <include refid="queryPhoneIsExists_where_clause"/>
+	</select>
+	
+	<sql id="queryPhoneIsExists_where_clause">
+		<where>
+			<if test="version !=null and version !='' ">
+				version = #{version }
+			</if>
+			<include refid="phone_where_clause"/>
+		</where>
+	</sql>
+	
+	<!-- *******************************添加手机*********************************** -->
+	<insert id="addPhone">
+		insert into phone(<include refid="PhoneData_insert_column"/>) 
+		values(<include refid="PhoneData_insert_value"/>)
+	</insert>
+	
+	<sql id="PhoneData_insert_column">
+		<trim suffix="" suffixOverrides="," >
+			<if test="brandId != null"> brand_id, </if>
+			<if test="modelId != null"> model_id, </if>
+			<if test="version != null"> version, </if>
+			<if test="price != null"> price, </if>
+			<if test="cpu != null"> cpu, </if>
+			<if test="cpuCores != null"> cpu_cores, </if>
+			<if test="cpuHz != null"> cpu_hz, </if>
+			<if test="listingDate != null"> listing_date, </if>
+			<if test="screenSize != null"> screen_size, </if>
+			<if test="netType != null"> net_type, </if>
+			<if test="os != null"> os, </if>
+			<if test="ram != null"> ram, </if>
+			<if test="rom != null"> rom, </if>
+			<if test="batteryCapacity != null"> battery_capacity, </if>
+			<if test="picUrl != null"> pic_url </if>
+		</trim>
+	</sql>
+	
+	<sql id="PhoneData_insert_value">
+		<trim suffix="" suffixOverrides="," >
+			<if test="brandId != null"> #{brandId}, </if>
+			<if test="modelId != null"> #{modelId}, </if>
+			<if test="version != null"> #{version}, </if>
+			<if test="price != null"> #{price}, </if>
+			<if test="cpu != null"> #{cpu}, </if>
+			<if test="cpuCores != null"> #{cpuCores}, </if>
+			<if test="cpuHz != null"> #{cpuHz}, </if>
+			<if test="listingDate != null"> #{listingDate}, </if>
+			<if test="screenSize != null"> #{screenSize}, </if>
+			<if test="netType != null"> #{netType}, </if>
+			<if test="os != null"> #{os}, </if>
+			<if test="ram != null"> #{ram}, </if>
+			<if test="rom != null"> #{rom}, </if>
+			<if test="batteryCapacity != null"> #{batteryCapacity}, </if>
+			<if test="picUrl != null"> #{picUrl} </if>
+		</trim>
+	</sql>
+	
+	<update id="updatePhone">
+		update phone set <include refid="updatePhone_set_clause"/> where id = #{id }
+	</update>
+	
+	<sql id="updatePhone_set_clause">
+		<trim suffix="" suffixOverrides="," >
+			<if test="brandId != null"> brand_id = #{brandId}, </if>
+			<if test="modelId != null"> model_id = #{modelId}, </if>
+			<if test="version != null"> version = #{version}, </if>
+			<if test="price != null"> price = #{price}, </if>
+			<if test="cpu != null"> cpu = #{cpu}, </if>
+			<if test="cpuCores != null"> cpu_cores = #{cpuCores}, </if>
+			<if test="cpuHz != null"> cpu_hz = #{cpuHz}, </if>
+			<if test="listingDate != null"> listing_date = #{listingDate}, </if>
+			<if test="screenSize != null"> screen_size = #{screenSize}, </if>
+			<if test="netType != null"> net_type = #{netType}, </if>
+			<if test="os != null"> os = #{os}, </if>
+			<if test="ram != null"> ram = #{ram}, </if>
+			<if test="rom != null"> rom = #{rom}, </if>
+			<if test="batteryCapacity != null"> battery_capacity = #{batteryCapacity}, </if>
+			<if test="picUrl != null"> pic_url = #{picUrl} </if>
+			</trim>
+	</sql>
+</mapper>

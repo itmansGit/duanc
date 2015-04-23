@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.duanc.api.BrandAndModelService;
-import com.duanc.mapper.common.BrandMapper;
-import com.duanc.mapper.common.ModelMapper;
+import com.duanc.mapper.common.BrandCommonMapper;
+import com.duanc.mapper.common.ModelCommonMapper;
 import com.duanc.model.dto.BrandDTO;
 import com.duanc.model.dto.ModelDTO;
 import com.duanc.utils.Pagination;
@@ -18,9 +18,9 @@ import com.duanc.utils.Pagination;
 @Service("brandAndModelService")
 public class BrandAndModelServiceImpl implements BrandAndModelService{
 	@Autowired
-	private BrandMapper brandMapper;
+	private BrandCommonMapper brandMapper;
 	@Autowired
-	private ModelMapper modelMapper;
+	private ModelCommonMapper modelMapper;
 	
 	private Map<Integer, String> dataMap;
 	private List<Map<String, Object>> dataList;

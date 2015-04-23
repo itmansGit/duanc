@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.duanc.mapper.base.UserAddressMapper" >
-  <resultMap id="BaseResultMap" type="com.duanc.model.base.UserAddress" >
+  <resultMap id="BaseResultMap" type="com.duanc.model.base.BaseUserAddress" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="province" property="province" jdbcType="VARCHAR" />
@@ -75,7 +75,7 @@
     id, user_id, province, city, district, detail, status, created_time, modify_time, 
     del_flag
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.UserAddressExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.BaseUserAddressExample" >
     select
     <if test="distinct" >
       distinct
@@ -103,13 +103,13 @@
     delete from user_address
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.duanc.model.base.UserAddressExample" >
+  <delete id="deleteByExample" parameterType="com.duanc.model.base.BaseUserAddressExample" >
     delete from user_address
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.duanc.model.base.UserAddress" >
+  <insert id="insert" parameterType="com.duanc.model.base.BaseUserAddress" >
     insert into user_address (id, user_id, province, 
       city, district, detail, 
       status, created_time, modify_time, 
@@ -119,7 +119,7 @@
       #{status,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{delFlag,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.duanc.model.base.UserAddress" >
+  <insert id="insertSelective" parameterType="com.duanc.model.base.BaseUserAddress" >
     insert into user_address
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -186,7 +186,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.UserAddressExample" >
+  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.BaseUserAddressExample" >
     select count(*) from user_address
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -246,7 +246,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.UserAddress" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.BaseUserAddress" >
     update user_address
     <set >
       <if test="userId != null" >
@@ -279,7 +279,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.UserAddress" >
+  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.BaseUserAddress" >
     update user_address
     set user_id = #{userId,jdbcType=INTEGER},
       province = #{province,jdbcType=VARCHAR},

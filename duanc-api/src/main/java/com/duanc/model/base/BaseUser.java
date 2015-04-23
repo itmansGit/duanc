@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class BaseUser implements Serializable {
-    private Integer id;
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
 
     private String username;
 

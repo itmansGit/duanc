@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseUserRoleExample implements Serializable {
-    protected String orderByClause;
+	private static final long serialVersionUID = 1L;
+
+	protected String orderByClause;
 
     protected boolean distinct;
 
@@ -76,7 +78,8 @@ public class BaseUserRoleExample implements Serializable {
     }
 
     protected abstract static class GeneratedCriteria implements Serializable {
-        protected List<Criterion> criteria;
+		private static final long serialVersionUID = 1L;
+		protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
@@ -239,13 +242,17 @@ public class BaseUserRoleExample implements Serializable {
 
     public static class Criteria extends GeneratedCriteria {
 
-        protected Criteria() {
+		private static final long serialVersionUID = 1L;
+
+		protected Criteria() {
             super();
         }
     }
 
     public static class Criterion implements Serializable {
-        private String condition;
+		private static final long serialVersionUID = 1L;
+
+		private String condition;
 
         private Object value;
 

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanc.mapper.common.StorageCommonMapper">
+	<resultMap type="com.duanc.model.dto.StorageDTO" id="storageMap">
+		<result column="id" property="id"/>
+		<result column="storage_id" property="storageId"/>
+		<result column="phone_id" property="phoneId"/>
+		<result column="count" property="count"/>
+		<result column="price" property="price"/>
+		<result column="status" property="status"/>
+		<result column="created_time" property="createdTime"/>
+		<association property="createUser" javaType="com.duanc.model.User">
+			<result column="uid" property="id"/>
+			<result column="nickname" property="nickname"/>
+		</association>
+		<association property="phone" javaType="com.duanc.model.dto.PhoneDTO">
+			<result column="version" property="version"/>
+			<result column="brand_name" property="brandName"/>
+			<result column="model_name" property="modelName"/>
+			<result column="pic_url" property="picUrl"/>
+		</association>
+	</resultMap>
+	
+	<insert id="addStorage">
+		insert into storage(<include refid="insert_column"/>) values(<include refid="insert_values"/>)
+	</insert>
+	<sql id="insert_column">
+		<trim suffix="" suffixOverrides="," >
+			<if test="id != null">id,</if>
+			<if test="storageId != null">storage_id,</if>
+			<if test="phoneId != null">phone_id,</if>
+			<if test="count != null">count,</if>
+			<if test="price != null">price,</if>
+			<if test="status != null">status,</if>
+			<if test="createdTime != null">created_time,</if>
+			<if test="createUser != null and createUser.id != null">created_user,</if>
+		</trim>
+	</sql>
+	<sql id="insert_values">
+		<trim suffix="" suffixOverrides="," >
+			<if test="id != null">#{id},</if>
+			<if test="storageId != null">#{storageId},</if>
+			<if test="phoneId != null">#{phoneId},</if>
+			<if test="count != null">#{count},</if>
+			<if test="price != null">#{price},</if>
+			<if test="status != null">#{status},</if>
+			<if test="createdTime != null">#{createdTime},</if>
+			<if test="createUser != null and createUser.id != null">#{createUser.id},</if>
+		</trim>
+	</sql>
+	
+	<!-- 查询storage
+	************************************************************************************
+	 -->
+	<select id="getStorages" resultMap="storageMap">
+		select <include refid="getStorages_query_column"/> from storage s, phone p, model m, brand b
+		<include refid="getStorages_where_clause"/> order by id desc 
+		<if test="pagination != null and pagination.begin >= 0">
+			limit #{pagination.begin}, #{pagination.length}
+		</if>
+	</select>
+	<sql id="getStorages_query_column">
+		s.id, s.storage_id, s.phone_id, s.count, s.price, s.status, s.created_time, s.created_user uid, p.version, m.model_name, b.brand_name, p.pic_url
+	</sql>
+	<sql id="getStorages_where_clause">
+		<where>
+			<include refid="where_clause"/>
+			<if test="minPrice != null">
+				<![CDATA[ and price >= #{minPrice}]]>
+			</if>
+			<if test="maxPrice != null">
+				<![CDATA[ and price <= #{maxPrice}]]>
+			</if>
+			and s.phone_id = p.id and p.model_id = m.id and m.brand_id = b.id
+		</where>
+	</sql>
+	
+	<!-- 
+	***********************************************************************
+	 -->
+	<sql id="where_clause">
+		<if test="id != null">
+			id = #{id}
+		</if>
+		<if test="storageId != null">
+			and storage_id = #{storageId}
+		</if>
+		<if test="phoneId != null">
+			and phone_id = #{phoneId}
+		</if>
+		<if test="count != null">
+			and count = #{count}
+		</if>
+		<if test="price != null">
+			and price = #{price}
+		</if>
+		<if test="status != null">
+			and status = #{status}
+		</if>
+	</sql>
+	
+	<select id="getStatus" resultType="java.lang.Integer">
+		select status from storage group by status order by status
+	</select>
+</mapper>

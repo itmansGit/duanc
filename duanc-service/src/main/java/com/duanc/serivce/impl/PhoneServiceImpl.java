@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.duanc.api.PhoneService;
-import com.duanc.mapper.common.PhoneMapper;
+import com.duanc.mapper.common.PhoneCommonMapper;
 import com.duanc.model.dto.PhoneDTO;
 import com.duanc.utils.Pagination;
 
@@ -17,7 +17,7 @@ import com.duanc.utils.Pagination;
 public class PhoneServiceImpl implements PhoneService{
 	
 	@Autowired
-	private PhoneMapper phoneMapper;
+	private PhoneCommonMapper phoneMapper;
 	
 	@Override
 	public boolean addPhone(PhoneDTO phoneDTO) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.duanc.mapper.base.ModelMapper" >
-  <resultMap id="BaseResultMap" type="com.duanc.model.base.Model" >
+  <resultMap id="BaseResultMap" type="com.duanc.model.base.BaseModel" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="brand_id" property="brandId" jdbcType="INTEGER" />
     <result column="model_name" property="modelName" jdbcType="VARCHAR" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List" >
     id, brand_id, model_name, created_time, created_user, modify_time, modify_user, del_flag
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.ModelExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.BaseModelExample" >
     select
     <if test="distinct" >
       distinct
@@ -100,13 +100,13 @@
     delete from model
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.duanc.model.base.ModelExample" >
+  <delete id="deleteByExample" parameterType="com.duanc.model.base.BaseModelExample" >
     delete from model
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.duanc.model.base.Model" >
+  <insert id="insert" parameterType="com.duanc.model.base.BaseModel" >
     insert into model (id, brand_id, model_name, 
       created_time, created_user, modify_time, 
       modify_user, del_flag)
@@ -114,7 +114,7 @@
       #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.duanc.model.base.Model" >
+  <insert id="insertSelective" parameterType="com.duanc.model.base.BaseModel" >
     insert into model
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -169,7 +169,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.ModelExample" >
+  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.BaseModelExample" >
     select count(*) from model
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -221,7 +221,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.Model" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.BaseModel" >
     update model
     <set >
       <if test="brandId != null" >
@@ -248,7 +248,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.Model" >
+  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.BaseModel" >
     update model
     set brand_id = #{brandId,jdbcType=INTEGER},
       model_name = #{modelName,jdbcType=VARCHAR},

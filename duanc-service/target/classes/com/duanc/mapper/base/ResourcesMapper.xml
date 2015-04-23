@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.duanc.mapper.base.ResourcesMapper" >
-  <resultMap id="BaseResultMap" type="com.duanc.model.base.Resources" >
+  <resultMap id="BaseResultMap" type="com.duanc.model.base.BaseResources" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
@@ -79,7 +79,7 @@
     id, name, url, icon, parent_id, parent_ids, order_by, type, premission, created_time, 
     created_user, modify_time, modify_user, del_flag
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.ResourcesExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.duanc.model.base.BaseResourcesExample" >
     select
     <if test="distinct" >
       distinct
@@ -107,13 +107,13 @@
     delete from resources
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.duanc.model.base.ResourcesExample" >
+  <delete id="deleteByExample" parameterType="com.duanc.model.base.BaseResourcesExample" >
     delete from resources
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.duanc.model.base.Resources" >
+  <insert id="insert" parameterType="com.duanc.model.base.BaseResources" >
     insert into resources (id, name, url, 
       icon, parent_id, parent_ids, 
       order_by, type, premission, 
@@ -125,7 +125,7 @@
       #{createdTime,jdbcType=TIMESTAMP}, #{createdUser,jdbcType=INTEGER}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=INTEGER}, #{delFlag,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.duanc.model.base.Resources" >
+  <insert id="insertSelective" parameterType="com.duanc.model.base.BaseResources" >
     insert into resources
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -216,7 +216,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.ResourcesExample" >
+  <select id="countByExample" resultType="java.lang.Integer" parameterType="com.duanc.model.base.BaseResourcesExample" >
     select count(*) from resources
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -292,7 +292,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.Resources" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.duanc.model.base.BaseResources" >
     update resources
     <set >
       <if test="name != null" >
@@ -337,7 +337,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.Resources" >
+  <update id="updateByPrimaryKey" parameterType="com.duanc.model.base.BaseResources" >
     update resources
     set name = #{name,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},

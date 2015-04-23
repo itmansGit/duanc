@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duanc.mapper.common.ModelCommonMapper">
+	<resultMap type="com.duanc.model.dto.ModelDTO" id="modelMap">
+		<result column="id" property="id"/>
+		<result column="brand_id" property="brandId"/>
+		<result column="brand_name" property="brandName"/>
+		<result column="model_name" property="modelName"/>
+	</resultMap>
+	
+	<select id="getModelsByBrandPO" resultMap="modelMap">
+		select <include refid="model_result_column"/> from model m, brand b <include refid="getModel_where_clause"/>
+		<if test="pagination !=null and pagination.begin >=0">
+			limit #{pagination.begin}, #{pagination.length}
+		</if>
+	</select>
+	
+	<select id="getModelsByBrandPOTotal" resultType="java.lang.Integer">
+		select count(*) from (select <include refid="model_result_column"/> 
+		from model m, brand b <include refid="getModel_where_clause"/>)total
+	</select>
+	
+	<sql id="getModel_where_clause">
+		<where>
+			m.brand_id = b.id
+			<if test="id != null">
+				and m.brand_id = #{id }
+			</if>
+			<if test="brandName != null">
+				and b.brand_name = #{brandName }
+			</if>
+		</where>
+	</sql>
+	
+	<sql id="model_result_column">m.id, m.brand_id, m.model_name, b.brand_name</sql>
+	
+	<!-- ************************************************************************** -->
+	<insert id="addModel">
+		insert into model(<include refid="model_insert_column"/>) values(<include refid="model_insert_values"/>)
+	</insert>
+	
+	<sql id="model_insert_column">
+		<trim suffix="" suffixOverrides="," >
+			<if test="brandId != null"> brand_id, </if>
+			<if test="modelName != null"> model_name </if>
+		</trim>
+	</sql>
+	<sql id="model_insert_values">
+		<trim suffix="" suffixOverrides="," >
+			<if test="brandId != null"> #{brandId }, </if>
+			<if test="modelName != null"> #{modelName } </if>
+		</trim>
+	</sql>
+	
+	<!-- ************************************************************************** -->
+	<delete id="deleteModel">
+		<if test="id != null"> delete from model  where id = #{id }</if>
+	</delete>
+	
+	<!-- ************************************************************************** -->
+	<update id="updateModel">
+		update model <include refid="model_set_clause"/> 
+	</update>
+	
+	<sql id="model_set_clause">
+		<trim suffix="" suffixOverrides="," >
+			<set>
+				<if test="brandId != null"> brand_id = #{brandId }, </if>
+				<if test="modelName != null"> model_name = #{modelName } </if>
+			</set>
+		</trim>
+		where id = #{id }
+	</sql>
+</mapper>
