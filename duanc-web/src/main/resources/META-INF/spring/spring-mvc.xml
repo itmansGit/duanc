@@ -45,7 +45,7 @@
     </bean>
     
     <!-- 支持Shiro对Controller的方法级AOP安全控制 begin-->
-	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
 		<property name="proxyTargetClass" value="true" />
 	</bean>
 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
@@ -54,7 +54,7 @@
                 <prop key="org.apache.shiro.authz.UnauthorizedException">/login</prop>
             </props>  
         </property>  
-    </bean>  
+    </bean>   -->
   	<!-- Shiro end -->
     
     <!-- 避免IE在ajax请求时，返回json出现下载 -->
@@ -87,12 +87,12 @@
      	<property name="suffix" value=".jsp" />
     </bean>
     
-    <mvc:interceptors>
+    <!-- <mvc:interceptors>
     	<mvc:interceptor>
     		<mvc:mapping path="/**"/>
     		<bean class="com.duanc.sys.interceptor.MenuInterceptor"></bean>
     	</mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors> -->
     
     <!-- <import resource="spring-shiro.xml"/> -->
 </beans>

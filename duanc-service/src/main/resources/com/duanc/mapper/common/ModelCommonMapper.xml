@@ -25,8 +25,8 @@
 	<sql id="getModel_where_clause">
 		<where>
 			m.brand_id = b.id
-			<if test="id != null">
-				and m.brand_id = #{id }
+			<if test="brandId != null">
+				and m.brand_id = #{brandId }
 			</if>
 			<if test="brandName != null">
 				and b.brand_name = #{brandName }

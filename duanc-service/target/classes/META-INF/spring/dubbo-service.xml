@@ -34,4 +34,12 @@
   	<dubbo:service interface="com.duanc.api.MenuService" ref="menuService" />
   	<dubbo:service interface="com.duanc.api.PhoneService" ref="phoneService" />
   	<dubbo:service interface="com.duanc.api.StorageService" ref="storageService" />
+  	<dubbo:service interface="com.duanc.api.web.IndexService" ref="indexService" />
+  	<dubbo:service interface="com.duanc.api.web.ShopPageService" ref="shopPageService" />
+  	<dubbo:service interface="com.duanc.api.web.RegistService" ref="registService" />
+  	<dubbo:service interface="com.duanc.api.web.ShowService" ref="showService" />
+  	<dubbo:service interface="com.duanc.api.web.PayService" ref="payService" />
+  	<dubbo:service interface="com.duanc.api.web.CartService" ref="cartService" />
+  	<dubbo:service interface="com.duanc.api.web.UserCenterService" ref="userCenterService" />
+  	<dubbo:service interface="com.duanc.api.comm.OrderService" ref="orderService" />
 </beans>

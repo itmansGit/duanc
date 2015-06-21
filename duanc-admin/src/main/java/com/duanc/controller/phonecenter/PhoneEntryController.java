@@ -33,8 +33,10 @@ public class PhoneEntryController extends BaseController{
 	public String phoneDateSubmit(Model model, PhoneDTO phoneDTO, @RequestParam MultipartFile file, HttpServletRequest request) {
 		if(null != phoneDTO && null != phoneDTO.getBrandId() && null != phoneDTO.getModelId()) {
 			if(!"".equals(file.getOriginalFilename()) ) {
-				String root = request.getSession().getServletContext().getRealPath(""); //通过REQUEST来得到相对地址，并在后面加上/bookpicture
-				root = root.substring(0, root.lastIndexOf('\\')) + "\\fileupload\\img\\phone";
+				String root = request.getSession().getServletContext().getRealPath(""); //通过REQUEST来得到相对地址
+				root = root.substring(0, root.lastIndexOf('\\'));
+				root = root.substring(0, root.lastIndexOf('\\')) + "\\webapps\\fileupload\\img\\phone";
+				/*root = root.substring(0, root.lastIndexOf('\\')) + "\\fileupload\\img\\phone";*/
 				String fileName = getFileName(phoneDTO, file);
 				try {
 					FileUploadUtil.fileUpload(fileName, root, file.getBytes());

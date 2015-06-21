@@ -31,10 +31,12 @@ public class PhoneDTO implements Serializable{
 	private String cpuCores;
 	/**cpu频率**/
 	private Double cpuHz;
+	private BigDecimal cpuhz;
 	/**上市日期**/
 	private Date listingDate;
 	/**主屏尺寸**/
 	private Double screenSize;
+	private BigDecimal screensize;
 	/**网络类型**/
 	private String netType;
 	/**操作系统**/
@@ -45,11 +47,30 @@ public class PhoneDTO implements Serializable{
 	private String rom;
 	/**电池容量**/
 	private Integer batteryCapacity;
+	private Short battery;
 	/**展示图片路径**/
 	private String picUrl;
 	
 	private Pagination pagination;
 	
+	public BigDecimal getCpuhz() {
+		return cpuhz;
+	}
+	public void setCpuhz(BigDecimal cpuhz) {
+		this.cpuhz = cpuhz;
+	}
+	public BigDecimal getScreensize() {
+		return screensize;
+	}
+	public void setScreensize(BigDecimal screensize) {
+		this.screensize = screensize;
+	}
+	public Short getBattery() {
+		return battery;
+	}
+	public void setBattery(Short battery) {
+		this.battery = battery;
+	}
 	public Pagination getPagination() {
 		return pagination;
 	}

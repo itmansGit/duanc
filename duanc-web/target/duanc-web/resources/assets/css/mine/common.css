@@ -1,0 +1,61 @@
+/**
+ *我的css 样式设计
+ */
+body form input[type=text]{
+		height:43px;
+	}
+	
+div .my-input-group-center{
+	margin-top: 20px;
+	margin-left: 260px;
+	margin-right: 200px;
+	margin-bottom: 20px;
+}
+
+.my-input-lg-6{
+	width:600px;
+}
+.my-input-lg-2{
+	width:200px;
+}
+
+.my-div{
+	margin-top:20px;
+}
+
+.my-img-container{
+	-webkit-animation-duration: 1s;
+-webkit-animation-fill-mode: both;
+-webkit-animation-name: fadeIn;
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: cover;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(255, 255, 255);
+background-origin: padding-box;
+background-repeat: no-repeat;
+background-size: cover;
+box-sizing: border-box;
+color: rgb(255, 255, 255);
+display: block;
+font-family: 'Source Sans Pro', sans-serif;
+font-size: 14px;
+height: 960px;
+line-height: 20px;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 150px;
+text-align: center;
+visibility: visible;
+width: 1579px;
+}
+
+.my-space{
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	position:inherit;
+}
