@@ -57,18 +57,18 @@
 										<td>
 											<c:choose>
 											<c:when test="${item.baseOrder.status == 0}">
-												<button type="button" class="am-btn am-btn-danger">付款</button>
-												<button type="button" class="am-btn am-btn-primary">取消订单</button>
+												<button type="button" class="am-btn am-btn-danger" onclick="updataStatus(${item.baseOrder.orderId},1);">付款</button>
+												<button type="button" class="am-btn am-btn-primary" onclick="updataStatus(${item.baseOrder.orderId},9);">取消订单</button>
 											</c:when>
 											<c:when test="${item.baseOrder.status == 1}">
-												<button type="button" class="am-btn am-btn-primary">取消订单</button>
+												<button type="button" class="am-btn am-btn-primary" onclick="updataStatus(${item.baseOrder.orderId},9);">取消订单</button>
 											</c:when>
 											<c:when test="${item.baseOrder.status == 2}">
-												<button type="button" class="am-btn am-btn-danger">确认收货</button>
-												<button type="button" class="am-btn am-btn-primary">申请退货</button>
+												<button type="button" class="am-btn am-btn-danger" onclick="updataStatus(${item.baseOrder.orderId},5);">确认收货</button>
+												<button type="button" class="am-btn am-btn-primary" onclick="updataStatus(${item.baseOrder.orderId},6);">申请退货</button>
 											</c:when>
 											<c:when test="${item.baseOrder.status == 5}">
-												<button type="button" class="am-btn am-btn-primary">申请退货</button>
+												<button type="button" class="am-btn am-btn-primary" onclick="updataStatus(${item.baseOrder.orderId},6);">申请退货</button>
 											</c:when>
 											<c:otherwise>
 											
@@ -99,6 +99,27 @@ var userPwd = function() {
 var userOrder = function() {
 	location.href = "${ctx}/user-center/order";
 }
+
+var updataStatus = function(orderId,status){
+	$.ajax({
+		url : '${ctx}/user-center/ajax-updata-status',
+		type : 'post',
+		dataType : 'json',
+		data : {orderId : orderId, status : status},
+		success : function(data){
+			if(data.success){
+				alert("操作成功！");
+			} else{
+				alert("操作失败！请稍后重试！");
+			}
+			location.reload(false); 	
+		},
+		error : function(){
+			alert('系统异常请稍后再试');
+		}
+	});
+}
+
 $(function(){
 	$('#logout').click(function(){
 		$.ajax({

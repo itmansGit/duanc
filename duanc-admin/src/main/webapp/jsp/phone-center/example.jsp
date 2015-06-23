@@ -21,17 +21,13 @@
 							<i class="icon-home home-icon"></i>
 							<a href="#">Home</a>
 						</li>
-						<li>
-							<a href="#">Other Pages</a>
-						</li>
-						<li class="active">Blank Page</li>
 					</ul><!-- .breadcrumb -->						
 				</div>
 				<div class="page-content">
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->																				
-								
+								<h1>亲爱的${user.username }!欢迎来到后台管理系统!</h1>
 								
 							<!-- PAGE CONTENT ENDS -->
 						</div><!-- /.col -->

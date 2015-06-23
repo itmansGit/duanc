@@ -42,4 +42,5 @@
   	<dubbo:service interface="com.duanc.api.web.CartService" ref="cartService" />
   	<dubbo:service interface="com.duanc.api.web.UserCenterService" ref="userCenterService" />
   	<dubbo:service interface="com.duanc.api.comm.OrderService" ref="orderService" />
+  	<dubbo:service interface="com.duanc.api.admin.AuthcService" ref="authcService" />
 </beans>

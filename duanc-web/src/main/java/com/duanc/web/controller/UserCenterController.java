@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.duanc.api.UserService;
 import com.duanc.api.comm.OrderService;
 import com.duanc.api.web.PayService;
@@ -22,6 +24,7 @@ import com.duanc.model.base.BaseUserData;
 import com.duanc.model.dto.OrderDTO;
 import com.duanc.utils.FileUploadUtil;
 import com.duanc.utils.IDAutogenerationUtil;
+import com.duanc.utils.JSONResult;
 import com.duanc.utils.MD5Util;
 
 @Controller
@@ -171,5 +174,17 @@ public class UserCenterController {
 			model.addAttribute("pwd_massage", "密码错误！请重新输入！");
 		}
 		return "user/center-pwd";
+	}
+	
+	@RequestMapping("/ajax-updata-status")
+	@ResponseBody
+	public String updataStatus(String orderId, byte status){
+		JSONResult jr = new JSONResult();
+		if(orderService.updataOrderStatus(orderId, status)) {
+			jr.setSuccess(true);
+		} else{
+			jr.setSuccess(false);
+		}
+		return JSON.toJSONString(jr);
 	}
 }

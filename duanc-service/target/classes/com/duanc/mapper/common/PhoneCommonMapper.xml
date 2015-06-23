@@ -150,4 +150,16 @@
 			<if test="picUrl != null"> pic_url = #{picUrl} </if>
 			</trim>
 	</sql>
+	
+	<select id="getPhoneIdByBrandAndModel" resultType="java.lang.Integer">
+		SELECT id from phone 
+		<where>
+			<if test="brandId != null">
+				brand_id = #{brandId}
+			</if>
+			<if test="modelId != null">
+				and model_id = #{modelId}
+			</if>
+		</where> 
+	</select>
 </mapper>

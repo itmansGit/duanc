@@ -31,7 +31,7 @@ public class LoginController extends BaseController{
 					}
 					currentUser.login(token);
 				}
-				return "redirect:/authc/model-mng";
+				return "redirect:/authc/example";
 			} catch (Exception e) {
 				LOGGER.error(e.getMessage());
 				return "login";

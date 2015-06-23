@@ -49,4 +49,6 @@ public interface PhoneCommonMapper {
 	 * @return boolean
 	 */
 	boolean updatePhone(PhoneDTO phoneDTO);
+	
+	List<Integer> getPhoneIdByBrandAndModel(PhoneDTO phoneDTO);
 }

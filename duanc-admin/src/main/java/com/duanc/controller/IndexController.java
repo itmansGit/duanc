@@ -12,9 +12,9 @@ public class IndexController {
 		return "login";
 	}
 	
-	@RequestMapping("/example")
+	@RequestMapping("/authc/example")
 	public String test() {
-		return "phone-data/example";
+		return "phone-center/example";
 	}
 	
 	@RequestMapping("/authc/400")

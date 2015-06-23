@@ -44,7 +44,7 @@
   </li>
 </c:forEach>
 </ul>
-<button style="float:right;" class="am-btn am-btn-primary">更多>>></button>
+<button style="float:right;" class="am-btn am-btn-primary" onclick="getShop();">更多>>></button>
 </div>
 
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default"/>
@@ -150,6 +150,10 @@ function login(obj){
 
 var getShow = function(phoneId){
 	location.href = "${ctx}/show/getPage?phoneId=" + phoneId;
+}
+
+var getShop = function(phoneId){
+	location.href = "${ctx}/shop/page";
 }
 </script>
 </body>

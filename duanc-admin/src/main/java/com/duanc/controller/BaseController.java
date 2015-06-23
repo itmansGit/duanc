@@ -16,6 +16,7 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import com.duanc.api.BrandAndModelService;
+import com.duanc.api.comm.OrderService;
 
 public abstract class BaseController {
 	protected Logger LOGGER = LoggerFactory.getLogger(this.getClass());
@@ -42,4 +43,10 @@ public abstract class BaseController {
 		model.addAttribute("brands", brandMap);
 	}
 	
+	@Autowired
+	private OrderService orderService;
+	protected void initOrderStatus(Model model) {
+		Map<Byte, String> map = orderService.getOrderStatusMap();
+		model.addAttribute("status", map);
+	}
 }

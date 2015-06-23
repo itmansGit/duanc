@@ -1,5 +1,6 @@
 package com.duanc.serivce.impl.comm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,21 @@ public class OrderDetialServiceImpl implements OrderDetialService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<String> getOrderIds(List<Integer> phoneIds) {
+		BaseOrderDetailExample example = new BaseOrderDetailExample();
+		Criteria c = example.createCriteria();
+		c.andPhoneIdIn(phoneIds);
+		List<BaseOrderDetail> list = orderDetailMapper.selectByExample(example);
+		List<String> orderIds = new ArrayList<>();
+		if (list != null && list.size() >0) {
+			for (BaseOrderDetail baseOrderDetail : list) {
+				orderIds.add(baseOrderDetail.getOrderId());
+			}
+		}
+		return orderIds;
 	}
 
 }

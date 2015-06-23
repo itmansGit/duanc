@@ -32,4 +32,6 @@
 	<dubbo:reference id="menuService" interface="com.duanc.api.MenuService"/>
 	<dubbo:reference id="phoneService" interface="com.duanc.api.PhoneService"/>
 	<dubbo:reference id="storageService" interface="com.duanc.api.StorageService"/>
+	<dubbo:reference id="orderService" interface="com.duanc.api.comm.OrderService"/>
+	<dubbo:reference id="authcService" interface="com.duanc.api.admin.AuthcService"/>
 </beans>

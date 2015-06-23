@@ -81,14 +81,14 @@
 
 											<div class="space-6"></div>
 											<p>
-												请输入您的邮箱
+												请输入您的手机号码
 											</p>
 
 											<form>
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="Email" />
+															<input type="email" class="form-control" placeholder="PhoneNo" />
 															<i class="icon-envelope"></i>
 														</span>
 													</label>
